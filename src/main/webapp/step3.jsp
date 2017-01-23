@@ -22,44 +22,44 @@
 
     <form:form modelAttribute="wizardForm" action="wizardFinish">
 
-    <div class="form-group">
-    </div>
-      <label for="firstName">First Name:</label>
-      <input readonly id="firstName" class="form-control" value="<c:out value="${wizardForm.firstName}"/>" />
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input disabled="true" id="firstName" class="form-control" value="<c:out value="${wizardForm.firstName}"/>" />
+      </div>
 
       <div class="form-group">
         <label for="lastName">Last Name:</label>
-        <input readonly id="lastName" class="form-control" value="<c:out value="${wizardForm.lastName}"/>" />
+        <input disabled="true" id="lastName" class="form-control" value="<c:out value="${wizardForm.lastName}"/>" />
       </div>
 
       <div class="form-group">
         <label for="emailAddress">Email Address:</label>
-        <input readonly id="emailAddress" class="form-control" value="<c:out value="${wizardForm.emailAddress}"/>" />
+        <input disabled="true" id="emailAddress" class="form-control" value="<c:out value="${wizardForm.emailAddress}"/>" />
       </div>
 
       <div class="form-group">
         <label for="trainingCourse">Training Course:</label>
-        <input readonly id="trainingCourse" class="form-control" value="<c:out value="${wizardForm.getTrainingCourse().getName()}"/>" />
+        <input disabled="true" id="trainingCourse" class="form-control" value="<c:out value="${wizardForm.getTrainingCourse().getName()}"/>" />
       </div>
 
       <div class="form-group">
         <label for="trainingCourseDate">Training Course Date:</label>
-        <input readonly id="trainingCourseDate" class="form-control" value="<c:out value="${wizardForm.trainingCourseDate}"/>">
+        <input disabled="true" id="trainingCourseDate" class="form-control" value="<c:out value="${wizardForm.trainingCourseDate}"/>">
       </div>
 
       <div class="form-group">
         <label for="trainingCourseSection">Favorite Section:</label>
-        <input readonly id="trainingCourseSection" class="form-control" value="<c:out value="${wizardForm.getTrainingCourseSection().getName()}"/>">
+        <input disabled="true" id="trainingCourseSection" class="form-control" value="<c:out value="${wizardForm.getTrainingCourseSection().getName()}"/>">
       </div>
 
       <div class="form-group">
         <label>Rating</label>
 
-        <form:radiobutton path="rating" value="1" class="radio-inline"/>1
-        <form:radiobutton path="rating" value="2" class="radio-inline"/>2
-        <form:radiobutton path="rating" value="3" class="radio-inline"/>3
-        <form:radiobutton path="rating" value="4" class="radio-inline"/>4
-        <form:radiobutton path="rating" value="5" class="radio-inline"/>5
+        <form:radiobutton path="rating" value="1" class="radio-inline" disabled="true"/>1
+        <form:radiobutton path="rating" value="2" class="radio-inline" disabled="true"/>2
+        <form:radiobutton path="rating" value="3" class="radio-inline" disabled="true"/>3
+        <form:radiobutton path="rating" value="4" class="radio-inline" disabled="true"/>4
+        <form:radiobutton path="rating" value="5" class="radio-inline" disabled="true"/>5
 
         <div>
           <form:errors path="rating" />
@@ -69,7 +69,7 @@
 
       <div class="form-group">
         <label for="comments">Comments:</label>
-        <textarea readonly rows="6" cols="40" name="comments" class="form-control" id="comments"><c:out value="${wizardForm.comments}"/></textarea>
+        <textarea disabled="true" rows="6" cols="40" name="comments" class="form-control" id="comments"><c:out value="${wizardForm.comments}"/></textarea>
       </div>
 
       <div class="form-group">

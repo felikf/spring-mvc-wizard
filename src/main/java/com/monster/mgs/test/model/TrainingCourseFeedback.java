@@ -1,6 +1,7 @@
 package com.monster.mgs.test.model;
 
-import javax.persistence.CascadeType;
+import com.monster.mgs.test.Constants;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,7 @@ public class TrainingCourseFeedback {
   private Date date;
 
   @Column(name="COMMENT", length = Constants.MAX_COMMENT_LENGTH)
-  String comment;
+  private String comment;
 
   public Long getId() {
     return id;
@@ -94,4 +95,16 @@ public class TrainingCourseFeedback {
     this.comment = comment;
   }
 
+  @Override
+  public String toString() {
+    return "TrainingCourseFeedback{" +
+            "id=" + id +
+            ", visitor=" + visitor +
+            ", trainingCourse=" + trainingCourse +
+            ", favoriteSection=" + favoriteSection +
+            ", rating=" + rating +
+            ", date=" + date +
+            ", comment='" + comment + '\'' +
+            '}';
+  }
 }

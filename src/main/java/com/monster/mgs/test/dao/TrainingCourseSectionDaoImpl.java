@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
+ * @see TrainingCourseSectionDao
  */
-@Transactional
 public class TrainingCourseSectionDaoImpl extends GenericDaoImpl<Long, TrainingCourseSection> implements TrainingCourseSectionDao {
 
     @Override

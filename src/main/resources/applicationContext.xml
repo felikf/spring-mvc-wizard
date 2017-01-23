@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <beans xmlns="http://www.springframework.org/schema/beans"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:util="http://www.springframework.org/schema/util"
-           xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-           xmlns:context="http://www.springframework.org/schema/context"
-           xmlns:tx="http://www.springframework.org/schema/tx"
-           xsi:schemaLocation="
-          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+
           http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
-
-    <context:component-scan base-package="com.monster.mgs.test.controller"/>
 
     <!-- embedded database - HSQL, H2 and Derby are supported natively -->
     <jdbc:embedded-database id="dataSource" type="HSQL">
@@ -37,20 +33,17 @@
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
+    <context:component-scan base-package="com.monster.mgs.test"/>
 
-    <bean id="validator"
-          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
-
-    <bean id="beanHelper" class="com.monster.mgs.test.BeanHelper" />
+    <bean id="wizardFormValidator" class="com.monster.mgs.test.web.validator.WizardFormValidator" />
 
     <!-- DAOs -->
-    <bean id="VisitorDAO" class="com.monster.mgs.test.dao.VisitorDaoImpl"/>
-    <bean id="TrainingCourseDaoImpl" class="com.monster.mgs.test.dao.TrainingCourseDaoImpl"/>
-    <bean id="TrainingCourseFeedbackDaoImpl" class="com.monster.mgs.test.dao.TrainingCourseFeedbackDaoImpl"/>
-    <bean id="TrainingCourseSectionDaoImpl" class="com.monster.mgs.test.dao.TrainingCourseSectionDaoImpl"/>
+    <bean id="VisitorDao" class="com.monster.mgs.test.dao.VisitorDaoImpl"/>
+    <bean id="TrainingCourseDao" class="com.monster.mgs.test.dao.TrainingCourseDaoImpl"/>
+    <bean id="TrainingCourseFeedbackDao" class="com.monster.mgs.test.dao.TrainingCourseFeedbackDaoImpl"/>
+    <bean id="TrainingCourseSectionDao" class="com.monster.mgs.test.dao.TrainingCourseSectionDaoImpl"/>
 
     <!-- Services -->
-
     <bean id="feedbackService" class="com.monster.mgs.test.service.FeedbackServiceImpl" />
 
 

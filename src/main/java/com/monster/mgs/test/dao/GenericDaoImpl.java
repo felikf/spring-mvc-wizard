@@ -46,25 +46,7 @@ public abstract class GenericDaoImpl<K extends Serializable, E> implements Gener
     }
 
     @Override
-    public E get(Class<? extends E> clazz, K key) throws GenericDaoException {
-        try {
-            return (E) getSession().get(clazz, key);
-        } catch (HibernateException he) {
-            throw new GenericDaoException(he);
-        }
-    }
-
-    @Override
-    public void delete(E entity) throws GenericDaoException {
-        try {
-            getSession().delete(entity);
-            getSession().flush();
-        } catch (HibernateException he) {
-            throw new GenericDaoException(he);
-        }
-    }
-
-    @Override
+    @Transactional
     public K save(E entity) throws GenericDaoException {
         Session session = getSession();
         try {
@@ -75,37 +57,10 @@ public abstract class GenericDaoImpl<K extends Serializable, E> implements Gener
     }
 
     @Override
-    public void update(E entity) throws GenericDaoException {
-        try {
-            getSession().update(entity);
-        } catch (HibernateException he) {
-            throw new GenericDaoException(he);
-        }
-    }
-
-    @Override
+    @Transactional
     public E merge(E entity) throws GenericDaoException {
         try {
             return (E) getSession().merge(entity);
-        } catch (HibernateException he) {
-            throw new GenericDaoException(he);
-        }
-    }
-
-    @Override
-    public void delete(K key) throws GenericDaoException {
-        try {
-            E entity = get(key);
-            getSession().delete(entity);
-        } catch (HibernateException he) {
-            throw new GenericDaoException(he);
-        }
-    }
-
-    @Override
-    public void flush() throws GenericDaoException {
-        try {
-            getSession().flush();
         } catch (HibernateException he) {
             throw new GenericDaoException(he);
         }

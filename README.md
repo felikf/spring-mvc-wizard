@@ -1,15 +1,15 @@
-####### TODO
-
-* @Transactional
-* Vyjimky ve web vrstve
+# Three page Spring MVC Wizard
+* Hibernate
+* Spring MVC
 * Bootstrap
-* Testy
-* validace
-* POST formu
-* inheritance servletu - init
-* Javadoc
-* logging
-* notnull javadoc
-* consolidate common ancestor dao
-* preselect radio rating
-* xsrf
+* some Java 8
+
+###### Not solved
+* HTML Templates
+* Session timeout handling / expiration
+* Localization
+* views to WEB-INF
+* more tests (DAO, validator ...)
+
+###### Tested on
+* Chromium Browser Version 53.0.2785.143

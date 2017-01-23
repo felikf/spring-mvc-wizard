@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * @see VisitorDao
  */
 public class VisitorDaoImpl extends GenericDaoImpl<Long, Visitor> implements VisitorDao {
 

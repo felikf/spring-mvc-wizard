@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import static com.monster.mgs.test.web.controller.WizardController.WIZARD_FORM;
+import static com.monster.mgs.test.web.WizardForm.WIZARD_FORM;
 
 /**
  * Controller to handle wizard pages, data initialization, redirect after POST, custom per page validation.
@@ -28,8 +28,6 @@ import static com.monster.mgs.test.web.controller.WizardController.WIZARD_FORM;
 @Controller
 @SessionAttributes(WIZARD_FORM)
 public class WizardController {
-
-    public static final String WIZARD_FORM = "wizardForm";
 
     @Autowired
     private TrainingCourseDao trainingCourseDao;
@@ -40,7 +38,8 @@ public class WizardController {
     @Autowired
     private FeedbackService feedbackService;
 
-    private WizardFormValidator validator = new WizardFormValidator();
+    @Autowired
+    private WizardFormValidator validator;
 
     @RequestMapping("/step1Wizard")
     public String step1Wizard() {
@@ -63,7 +62,7 @@ public class WizardController {
 
         if (!model.containsAttribute(WIZARD_FORM)) {
             WizardForm wizardForm = new WizardForm();
-            wizardForm.setAvailableTrainingCourses(trainingCourseDao.findAll());
+            wizardForm.setAvailableTrainingCourses(trainingCourseDao.findAllOrderByName());
             model.addAttribute(WIZARD_FORM, wizardForm);
         }
 
@@ -73,6 +72,7 @@ public class WizardController {
     @RequestMapping(value = "/step2Init")
     public String step2(@ModelAttribute(WIZARD_FORM)  WizardForm wizardForm, BindingResult result, RedirectAttributes attr) {
         validator.validatePage1Form(wizardForm, result);
+        //keep validation across redirects
         attr.addFlashAttribute("org.springframework.validation.BindingResult.wizardForm", result);
 
         if (result.hasErrors()) {
@@ -92,6 +92,7 @@ public class WizardController {
 
         wizardForm.setStepTypeForward(null);
         validator.validate(wizardForm, result);
+        //keep validation across redirects
         attr.addFlashAttribute("org.springframework.validation.BindingResult.wizardForm", result);
 
         if (result.hasErrors()) {
@@ -112,7 +113,7 @@ public class WizardController {
 
         feedbackService.storeFeedback(wizardForm.createVisitor(), wizardForm.createFeedback());
 
-        request.removeAttribute(WizardController.WIZARD_FORM, WebRequest.SCOPE_SESSION);
+        request.removeAttribute(WIZARD_FORM, WebRequest.SCOPE_SESSION);
         httpServletRequest.getSession().setAttribute("message", "Feedback saved successfully.");
         status.setComplete();
         return "redirect:/list";
@@ -121,7 +122,7 @@ public class WizardController {
     @RequestMapping(value = "/wizardStop", method = RequestMethod.GET)
     public String wizardStop(@ModelAttribute(WIZARD_FORM)  @Valid WizardForm wizardForm, WebRequest request, SessionStatus status) {
         status.setComplete();
-        request.removeAttribute(WizardController.WIZARD_FORM, WebRequest.SCOPE_SESSION);
+        request.removeAttribute(WIZARD_FORM, WebRequest.SCOPE_SESSION);
         return "redirect:/";
     }
 

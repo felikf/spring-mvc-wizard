@@ -1,5 +1,7 @@
 package com.monster.mgs.test.model;
 
+import com.monster.mgs.test.Constants;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,5 +55,15 @@ public class Visitor {
 
   public void setEmailAddress(String emailAddress) {
     this.emailAddress = emailAddress;
+  }
+
+  @Override
+  public String toString() {
+    return "Visitor{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", emailAddress='" + emailAddress + '\'' +
+            '}';
   }
 }

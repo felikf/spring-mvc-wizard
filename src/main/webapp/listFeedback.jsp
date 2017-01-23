@@ -9,6 +9,18 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
     </script>
+    <style type="text/css">
+        .table td.text {
+            max-width: 177px;
+        }
+        .table td.text span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+            max-width: 100%;
+        }
+    </style>
 </head>
 <body>
 <div class="container theme-showcase">
@@ -51,7 +63,9 @@
                 </td>
                 <td><span class="label label-info"><c:out value="${feedback.favoriteSection.name}"/></span></td>
                 <td><c:out value="${feedback.rating}"/></td>
-                <td><c:out value="${feedback.comment}"/></td>
+                <td class="text">
+                    <span data-toggle="tooltip" title="<c:out value="${feedback.comment}"/>">${feedback.comment}</span>
+                </td>
             </tr>
         </c:forEach>
 

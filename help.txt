@@ -1,0 +1,43 @@
+Assignment description
+======================
+
+This archive contains a skeleton of a simple web application used to collect feedback from attendees of training courses.
+
+The application consists of a main page where user can start entering feedback. The feedback collection process is divided into three pages - first two pages are used to collect actual feedback, the third page is used to review the feedback and to store it in database.
+
+The skeleton already contains a database schema and an initial set of reference data. An embedded in-memory database is configured in applicationContext.xml to get you started.
+
+
+Your tasks are following:
+
+1. Implement the feedback collection wizard so that user can move forward and backward between steps without losing any of the data already entered. The feedback data should be actually stored to database only after clicking "Send Feedback" button on the last step.
+
+2. After having stored the feedback successfully to database application should display a confirmation message.
+
+3. When user clicks the "Cancel" button on the first step all form data entered so far should be cleared.
+
+4. All required values (see database schema definition) should be entered in the wizard, standard validation of missing or incorrectly formatted (date, email address) values should be implemented. Users should not be allowed to continue to Step 2 unless all values in Step 1 have been entered correctly, similarly for transition from Step 2 to Step 3.
+
+5. If the user enters an email already existing in the database the corresponding Visitor record should be updated instead of creating a new record.
+
+6. Create a page that will list all feedback entries already stored in database.
+
+[Optional]
+
+7. Nice UI and styles. It is not required, we have a UI team here.
+
+
+Running the application with Jetty plugin
+=========================================
+
+Please be sure that you have installed Maven and its bin directory is placed in your PATH variable.
+To download maven please visit site http://maven.apache.org
+
+To run this project in Jetty (this will start Jetty running on port 8080 and serving the project. Jetty will continue to run until the plugin is explicitly stopped, for example, by a <CTRL-C>):
+  mvn jetty:run
+
+To make a WAR:
+  mvn clean package
+
+To run all tests:
+  mvn clean test

@@ -21,35 +21,35 @@
 
         <form:form modelAttribute="wizardForm" action="step2Init" method="post">
 
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
+            <div class="form-group <spring:bind path="firstName"><c:if test="${status.error}">has-error</c:if></spring:bind>">
+                <label class="control-label" for="firstName">First Name:</label>
                 <form:input type="text" path="firstName" class="form-control" id="firstName"/>
-                <form:errors path="firstName" />
+                <form:errors path="firstName" class="help-block" element="span"/>
             </div>
 
-            <div class="form-group">
-                <label for="firstName">Last Name:</label>
+            <div class="form-group <spring:bind path="lastName"><c:if test="${status.error}">has-error</c:if></spring:bind>">
+                <label class="control-label" for="firstName">Last Name:</label>
                 <form:input type="text" path="lastName" class="form-control" id="lastName"/>
-                <form:errors path="lastName" />
+                <form:errors path="lastName" class="help-block" element="span"/>
             </div>
 
-            <div class="form-group">
-                <label for="emailAddress">Email Address:</label>
+            <div class="form-group <spring:bind path="emailAddress"><c:if test="${status.error}">has-error</c:if></spring:bind>">
+                <label class="control-label" for="emailAddress">Email Address:</label>
                 <form:input type="text" path="emailAddress" class="form-control" id="emailAddress"/>
-                <form:errors path="emailAddress" />
+                <form:errors path="emailAddress" class="help-block" element="span"/>
             </div>
 
-            <div class="form-group">
-                <label for="trainingCourseId">Training Course:</label>
+            <div class="form-group <spring:bind path="trainingCourseId"><c:if test="${status.error}">has-error</c:if></spring:bind>">
+                <label class="control-label" for="trainingCourseId">Training Course:</label>
                 <form:select path="trainingCourseId" class="form-control" id="trainingCourseId" items="${wizardForm.getAvailableTrainingCoursesMap()}">
                 </form:select>
-                <form:errors path="trainingCourseId" />
+                <form:errors path="trainingCourseId" class="help-block" element="span"/>
             </div>
 
-            <div class="form-group">
-                <label for="trainingCourseDate">Training Course Date:</label>
+            <div class="form-group <spring:bind path="trainingCourseDate"><c:if test="${status.error}">has-error</c:if></spring:bind>">
+                <label class="control-label" for="trainingCourseDate">Training Course Date:</label>
                 <form:input type="text" path="trainingCourseDate" value="${wizardForm.trainingCourseDate}" class="form-control" id="trainingCourseDate"/>
-                <form:errors path="trainingCourseDate" />
+                <form:errors path="trainingCourseDate" class="help-block" element="span"/>
             </div>
 
             <input id="reset" type="button" value="&lt; Cancel" class="btn btn-primary"/>

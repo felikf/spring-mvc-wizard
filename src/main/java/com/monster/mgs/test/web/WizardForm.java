@@ -13,10 +13,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Wizard form - contains user input and available database categories.
+ * Wizard form bean - web related data gathered in wizard form. Two page validation. Training course and training
+ * section categories exposed to web.
  */
 public class WizardForm {
-    public static final String WIZARD_FORM_NAME = "wizardForm";
+    public static final String WIZARD_FORM = "wizardForm";
 
     private String firstName;
     private String lastName;

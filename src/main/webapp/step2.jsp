@@ -18,36 +18,37 @@
     <h1>Training Course Feedback Form</h1>
     <p>Please help us to improve our class by completing this form.</p>
 
-
     <form:form modelAttribute="wizardForm" action="step3Init" method="post">
 
-      <div class="form-group">
-        <label for="trainingCourseSectionId">Favorite Section:</label>
+      <div class="form-group <spring:bind path="trainingCourseSectionId"><c:if test="${status.error}">has-error</c:if></spring:bind>">
+        <label class="control-label" for="trainingCourseSectionId">Favorite Section:</label>
 
         <form:select path="trainingCourseSectionId" class="form-control" id="trainingCourseSectionId" items="${wizardForm.getAvailableTrainingCourseSectionsMap()}">
         </form:select>
-        <form:errors path="trainingCourseSectionId" />
+        <form:errors path="trainingCourseSectionId" class="help-block" element="span"/>
 
       </div>
 
-      <div class="form-group">
-        <label>Please rate the rating:</label>
+      <div class="form-group <spring:bind path="rating"><c:if test="${status.error}">has-error</c:if></spring:bind>">
+        <label class="control-label" for="rating">Please rate the training:</label>
 
-        <form:radiobutton path="rating" value="1" class="radio-inline"/>1
+        <form:radiobutton path="rating" value="1" class="radio-inline" id="rating"/>1
         <form:radiobutton path="rating" value="2" class="radio-inline"/>2
         <form:radiobutton path="rating" value="3" class="radio-inline"/>3
         <form:radiobutton path="rating" value="4" class="radio-inline"/>4
         <form:radiobutton path="rating" value="5" class="radio-inline"/>5
 
         <div>
-          <form:errors path="rating" />
+          <form:errors path="rating" class="help-block" element="span"/>
         </div>
 
       </div>
 
-      <div class="form-group">
-        <label for="comments">Please share with us your comments on how we can improve this class for future:</label>
+      <div class="form-group <spring:bind path="comments"><c:if test="${status.error}">has-error</c:if></spring:bind>">
+        <label class="control-label" for="comments">Please share with us your comments on how we can improve this class for future:</label>
         <textarea rows="6" cols="40" name="comments" class="form-control" id="comments"></textarea>
+
+        <form:errors path="comments" class="help-block" element="span"/>
       </div>
 
       <form:input path="stepTypeBack" type="submit" name="back" value="< Back" class="btn btn-primary"/>

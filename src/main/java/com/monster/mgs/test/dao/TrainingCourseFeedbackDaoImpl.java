@@ -5,8 +5,8 @@ import com.monster.mgs.test.model.TrainingCourseFeedback;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * @see TrainingCourseFeedbackDao
  */
-@Transactional
 public class TrainingCourseFeedbackDaoImpl extends GenericDaoImpl<Long, TrainingCourseFeedback> implements TrainingCourseFeedbackDao {
 
 }

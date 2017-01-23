@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import static com.monster.mgs.test.web.WizardForm.WIZARD_FORM;
+
 /**
  * Home controller. Initialize model, bla, bla bla.
  */
@@ -12,7 +14,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String helloWorld(WebRequest request) {
-        request.removeAttribute(WizardController.WIZARD_FORM, WebRequest.SCOPE_SESSION);
+        request.removeAttribute(WIZARD_FORM, WebRequest.SCOPE_SESSION);
 
         return "index";
     }

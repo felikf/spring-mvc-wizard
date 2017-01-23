@@ -1,5 +1,7 @@
 package com.monster.mgs.test.model;
 
+import com.monster.mgs.test.Constants;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

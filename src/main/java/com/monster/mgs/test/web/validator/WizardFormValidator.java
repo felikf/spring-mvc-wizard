@@ -11,9 +11,13 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.monster.mgs.test.Constants.MAX_COMMENT_LENGTH;
+import static com.monster.mgs.test.Constants.MAX_NAME_LENGTH;
+
 
 /**
  * Custom validator for {@link WizardForm}.
+ * Performs two-page validation. Each validation happens in specific step.
  */
 public class WizardFormValidator implements Validator {
 
@@ -27,15 +31,21 @@ public class WizardFormValidator implements Validator {
         return WizardForm.class.isAssignableFrom(clazz);
     }
 
-    //validate page 1
+    /**
+     * Validates wizard step1: firstName, lastName, email, date.
+     *
+     * @param wizardForm validated form
+     * @param errors exposed errors
+     */
     public void validatePage1Form(WizardForm wizardForm, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName","required.firstName", "Field is required.");
-        validateLength(wizardForm.getFirstName(), 30, "firstName", "maxLength", errors);
+        validateLength(wizardForm.getFirstName(), MAX_NAME_LENGTH, "firstName", "maxLength", errors);
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName","required.lastName", "Field is required.");
-        validateLength(wizardForm.getLastName(), 30, "lastName", "maxLength", errors);
+        validateLength(wizardForm.getLastName(), MAX_NAME_LENGTH, "lastName", "maxLength", errors);
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emailAddress","required.emailAddress", "Field is required.");
+        validateLength(wizardForm.getEmailAddress(), MAX_NAME_LENGTH, "emailAddress", "maxLength", errors);
         validateEmail(wizardForm.getEmailAddress(), "emailAddress", "valid.emailAddress", errors);
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "trainingCourseDate","required.trainingCourseDate", "Field is required.");
@@ -44,16 +54,29 @@ public class WizardFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "trainingCourseId","required.trainingCourseId", "Field is required.");
     }
 
-    //validate page 2
-    public void validatePage2Form(Object target, Errors errors) {
+    /**
+     * Validates wizard step2: rating, comments.
+     *
+     * @param wizardForm validated form
+     * @param errors exposed errors
+     */
+    public void validatePage2Form(WizardForm wizardForm, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "rating","required.rating", "Field is required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "trainingCourseId","required.trainingCourseId", "Field is required.");
+
+        validateLength(wizardForm.getComments(), MAX_COMMENT_LENGTH, "comments", "valid.comments", errors);
     }
 
-     @Override
+    /**
+     * Validates both steps.
+     *
+     * @param target validated wizard form
+     * @param errors exposed errors.
+     */
+    @Override
     public void validate(Object target, Errors errors) {
         validatePage1Form((WizardForm) target, errors);
-        validatePage2Form(target, errors);
+        validatePage2Form((WizardForm) target, errors);
     }
 
 
