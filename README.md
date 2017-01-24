@@ -13,3 +13,9 @@
 
 ###### Tested on
 * Chromium Browser Version 53.0.2785.143
+
+###### Screenshot
+![alt tag](wizard.png)
+
+###### Start
+`mvn jetty:run`

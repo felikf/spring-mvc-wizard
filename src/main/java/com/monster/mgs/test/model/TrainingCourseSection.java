@@ -24,6 +24,19 @@ public class TrainingCourseSection {
   @Column(name="TRAINING_COURSE_ID", nullable = false)
   private Long trainingCourseId;
 
+  /**
+   * Default...
+   */
+  public TrainingCourseSection() {
+    //empty
+  }
+
+  public TrainingCourseSection(Long id, String name, Long trainingCourseId) {
+    this.id = id;
+    this.name = name;
+    this.trainingCourseId = trainingCourseId;
+  }
+
   public Long getId() {
     return id;
   }

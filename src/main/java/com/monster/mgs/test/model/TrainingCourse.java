@@ -21,6 +21,18 @@ public class TrainingCourse {
   @Column(name="NAME", length = Constants.MAX_TRAINING_COURSE_NAME, nullable = false)
   private String name;
 
+  /**
+   * Default...
+   */
+  public TrainingCourse() {
+    //empty
+  }
+
+  public TrainingCourse(Long id, String name) {
+    this.id = id;
+    this.name = name;
+  }
+
   public Long getId() {
     return id;
   }

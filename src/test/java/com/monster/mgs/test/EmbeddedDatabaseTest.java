@@ -9,14 +9,17 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Test just for confirm that embedded HSQL database is working and also schema and initial data
  * are correctly placed in.
  */
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath*:/applicationContext.xml" })
 public class EmbeddedDatabaseTest extends AbstractTransactionalJUnit4SpringContextTests {
 
   @Test
